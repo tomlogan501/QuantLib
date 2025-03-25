@@ -1,0 +1,14 @@
+# Dockerfile
+FROM expertswe-external-base:20250227-v3
+
+RUN mkdir -p /root/repo/quantlib
+
+RUN apt-get update \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y -y lcov libboost-dev autoconf automake libtool dos2unix htop ccache ninja-build\
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN cd /root/repo/quantlib & dos2unix * & find . -name \*.m4|xargs dos2unix & find . -name \*.ac|xargs dos2unix & find . -name \*.am|xargs dos2unix
+
+# Set the working directory
+WORKDIR /root/repo/quantlib

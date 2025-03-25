@@ -1,0 +1,10 @@
+{
+    "name": "Custom Development Container MERCOR",
+    "context": "..",
+    "dockerFile": "../Dockerfile_dev",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/root/repo/quantlib,type=bind,consistency=cached"
+    ],
+    "postCreateCommand": "echo 'Development container is ready!'",
+    "remoteUser": "root"
+}
